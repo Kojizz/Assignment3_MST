@@ -1,48 +1,53 @@
-MST Comparer — Prim’s vs Kruskal’s Algorithm
-Overview
 
-This project compares two classic algorithms for finding the Minimum Spanning Tree (MST) of a weighted undirected graph:
+# MST Comparer — Prim’s vs Kruskal’s Algorithm
 
-Prim’s Algorithm
+## Overview
 
-Kruskal’s Algorithm
+This project compares two classic algorithms for finding the **Minimum Spanning Tree (MST)** of a weighted undirected graph:
 
-Both algorithms are implemented in Java and tested using graphs provided in a JSON input file.
+* **Prim’s Algorithm**
+* **Kruskal’s Algorithm**
+
+Both algorithms are implemented in **Java** and tested using graphs provided in a **JSON input file**.
 The program measures:
 
-Total cost of the MST
+* **Total cost** of the MST
+* **Number of operations performed**
+* **Execution time (in milliseconds)**
 
-Number of operations performed
+This allows a detailed performance comparison between Prim’s and Kruskal’s approaches.
 
-Execution time in milliseconds
+---
 
-This allows performance comparison between Prim’s and Kruskal’s approaches.
+## Features
 
-Features
+* Reads graph data (nodes and edges) from a JSON file
+* Implements both Prim’s and Kruskal’s MST algorithms
+* Counts the total number of operations for complexity comparison
+* Measures execution time for each algorithm
+* Displays MST edges, total cost, and performance metrics
 
-- Reads graph data (nodes and edges) from a JSON file
-- Implements both Prim’s and Kruskal’s MST algorithms
-- Counts the total number of operations for complexity comparison
-- Measures execution time for each algorithm
-- Displays MST edges, total cost, and performance metrics
+---
 
-Prim’s Algorithm:
+## Prim’s Algorithm
 
-- Starts from any vertex and grows the MST by always adding the smallest edge that connects a new vertex to the existing tree.
+* Starts from any vertex and grows the MST by always adding the smallest edge that connects a new vertex to the existing tree.
+* Uses a **priority queue (min-heap)** to select the minimum edge efficiently.
+* Works best for **dense graphs**.
 
-- Uses a priority queue (min-heap) to select the minimum edge efficiently.
+---
 
-- Works best for dense graphs.
+## Kruskal’s Algorithm
 
-Kruskal’s Algorithm:
+* Sorts all edges by weight and adds them one by one while avoiding cycles.
+* Uses a **Union-Find (Disjoint Set)** data structure to detect cycles efficiently.
+* Works well for **sparse graphs**.
 
-- Sorts all edges by weight and adds them one by one while avoiding cycles.
+---
 
-- Uses a Union-Find (Disjoint Set) data structure to detect cycles efficiently.
+## Project Structure
 
-- Works well for sparse graphs.
-
-Project Structure
+```
 MSTComparer.java
 │
 ├── Edge                Represents a graph edge (u, v, weight)
@@ -52,11 +57,15 @@ MSTComparer.java
 ├── primMST()           Implements Prim’s Algorithm
 ├── kruskalMST()        Implements Kruskal’s Algorithm
 └── main()              Reads input, runs algorithms, prints results
+```
 
-Input Format
+---
 
-The program expects a JSON file (default: input.json) containing graph data like this:
+## Input Format
 
+The program expects a **JSON file** (default: `input.json`) containing graph data like this:
+
+```json
 [
   {
     "id": 1,
@@ -70,18 +79,26 @@ The program expects a JSON file (default: input.json) containing graph data like
     ]
   }
 ]
+```
 
+---
 
-Run MSTComparer
+## How to Run
 
-Run from Terminal
+### From Terminal
+
+```bash
 javac mst/MSTComparer.java
 java mst.MSTComparer input.json
+```
 
+If no argument is provided, the program automatically uses the default file `input.json`.
 
-If no argument is provided, it will automatically use the default file input.json.
+---
 
-Example Output
+## Example Output
+
+```
 Reading input from: input.json
 
 Graph ID: 1
@@ -98,22 +115,29 @@ Kruskal's Algorithm:
   A - C (2)
   C - D (3)
 Total Cost: 6, Ops: 52, Time: 0.03 ms
+```
 
-Performance Metrics:
-Algorithm	Total Cost	Operations	Execution Time (ms)
-Prim’s	6	47	0.05
-Kruskal’s	6	52	0.03
+### Performance Metrics
 
-Both produce the same MST cost, but operation count and time may vary depending on graph structure.
+| Algorithm | Total Cost | Operations | Execution Time (ms) |
+| --------- | ---------- | ---------- | ------------------- |
+| Prim’s    | 6          | 47         | 0.05                |
+| Kruskal’s | 6          | 52         | 0.03                |
 
-Key learnings
+Both algorithms produce the same MST cost, but operation count and time vary depending on graph structure.
 
-- Prim’s is efficient for dense graphs because it grows locally.
+---
 
-- Kruskal’s is better for sparse graphs due to sorting and disjoint set merging.
+## Key Learnings
 
-- Using operation counts and timing shows how algorithmic complexity behaves in practice.
+* **Prim’s** is more efficient for **dense graphs** because it grows locally from a single vertex.
+* **Kruskal’s** performs better for **sparse graphs** due to sorting and disjoint set merging.
+* Counting operations and measuring execution time demonstrate practical differences in complexity.
+* Parsing JSON manually (without external libraries) keeps the project simple and portable.
 
-- Parsing JSON manually with regex helps avoid extra libraries and keeps code lightweight.
+---
 
-By:Rasul Ahmetov
+## By
+
+**Rasul Ahmetov**
+
